@@ -83,6 +83,22 @@ function balancedBst(tree){
   return(minHeight(tree) >= height(tree) - 1);
 }
 
+//Q9: Same BST
+function sameBst(arr1, arr2) {
+  if((arr1[0] !== arr2[0]) || (arr1.length !== arr2.length)) {
+    return false
+  }
+  if(arr1.length < 2 || arr1.length === 2 && arr1[1] === arr2[1]) {
+    return true
+  }
+  let right1 = arr1.filter(item => item > arr1[0])
+  let left1 = arr1.filter(item => item < arr1[0])
+
+  let right2 = arr2.filter(item => item > arr2[0])
+  let left2 = arr2.filter(item => item < arr2[0])
+
+  return sameBst(right1, right2) && sameBst(left1, left2)
+}
 
 
 function main() {
@@ -114,4 +130,11 @@ function main() {
   console.log(balancedBst(bst));
 }
 
-main()
+
+
+let arr1=[3, 5, 4, 6, 1, 0, 2]
+
+let arr2=[3, 1, 5, 2, 4, 6, 0]
+
+console.log(sameBst(arr1, arr2))
+
